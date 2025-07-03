@@ -25,6 +25,7 @@ public class Device {
     @Builder.Default
     private List<DeviceComponent> deviceComponents = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "device")
     private List<Post> posts = new ArrayList<>();
 }

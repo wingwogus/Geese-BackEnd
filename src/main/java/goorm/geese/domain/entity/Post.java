@@ -28,7 +28,7 @@ public class Post extends BaseTimeEntity {
     @JoinColumn(name = "device_id", nullable = false)
     private Device device;
 
-    private int viewCount = 0;
+    private int viewCount;
 
     @Builder.Default
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
