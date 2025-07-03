@@ -34,12 +34,15 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @Builder.Default
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Post> posts = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PostLike> postLikes = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,  cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 

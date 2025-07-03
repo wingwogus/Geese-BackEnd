@@ -22,6 +22,7 @@ public class Device {
     private String name;
 
     @OneToMany(mappedBy = "device")
+    @Builder.Default
     private List<DeviceComponent> deviceComponents = new ArrayList<>();
 
     @OneToMany(mappedBy = "device")
