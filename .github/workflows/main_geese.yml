@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: build/libs/app.jar
+          path: build/libs/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,5 +66,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'Geese'
-          package: build/libs
+          package: build/libs/*.jar
           
