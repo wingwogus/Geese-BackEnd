@@ -36,11 +36,11 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
-      - name: Upload artifact for deployment job
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: build/libs/*.jar
+          path: build/libs/app.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,10 +63,8 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DA871B075DA844F89E1D130D85041501 }}
 
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'Geese'
-          slot-name: 'Production'
-          package: '*.jar'
+          package: app.jar
           
