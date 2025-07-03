@@ -66,5 +66,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'Geese'
-          package: '*.jar'
+          package: geese-0.0.1-SNAPSHOT.jar
           
