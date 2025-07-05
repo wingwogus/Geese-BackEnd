@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/members/information/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/comments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/cards/**").permitAll()
                         .anyRequest().authenticated()) // 그 외 모든 요청은 인증 필요
                 // 사용자 정의 로그인 필터 추가
                 .addFilterAt(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
