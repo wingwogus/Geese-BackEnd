@@ -1,8 +1,10 @@
 package goorm.geese.service.impl;
 
+import goorm.geese.domain.entity.Card;
 import goorm.geese.domain.entity.Device;
 import goorm.geese.domain.entity.Member;
 import goorm.geese.domain.entity.Role;
+import goorm.geese.repository.CardRepository;
 import goorm.geese.repository.DeviceRepository;
 import goorm.geese.repository.MemberRepository;
 import jakarta.annotation.PostConstruct;
@@ -17,6 +19,8 @@ public class InitDataService {
     private final MemberRepository memberRepository;
     private final DeviceRepository deviceRepository;
     private final PasswordEncoder passwordEncoder;
+    private final CardRepository cardRepository;
+
     @PostConstruct
     public void init() {
         Member member = Member.builder()
@@ -33,5 +37,17 @@ public class InitDataService {
                 .build();
 
         deviceRepository.save(device1);
+
+        for (int i = 0 ; i < 10 ; i++) {
+            Card card = Card.builder()
+                    .keyword(i + "번째")
+                    .title(i + "번째")
+                    .explain(i + "번째")
+                    .device(i + "번째")
+                    .build();
+
+            cardRepository.save(card);
+        }
+
     }
 }
