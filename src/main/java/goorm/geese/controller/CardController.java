@@ -1,7 +1,10 @@
 package goorm.geese.controller;
 
 import goorm.geese.domain.entity.Card;
-import goorm.geese.service.CardService;
+import goorm.geese.dto.ApiResponse;
+import goorm.geese.service.impl.CardService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Tag(name = "Comment", description = "카드뽑기 API")
 @RestController
 @RequestMapping("/api/cards")
 @RequiredArgsConstructor
@@ -18,22 +22,22 @@ public class CardController {
 
     private final CardService cardService;
 
-    // 카드 3개의 keyword만 반환
-    @GetMapping("")
-    public ResponseEntity<List<String>> getKeywords() {
+    @Operation(summary = "카드 키워드 반환", description = "랜덤 카드 3개의 키워드를 반환합니다.")
+    @GetMapping
+    public ResponseEntity<ApiResponse<List<String>>> getKeywords() {
         List<String> keywords = cardService.getRandomKeywords();
-        return ResponseEntity.ok(keywords);
+        return ResponseEntity.ok(ApiResponse.success("카드 키워드 반환 완료", keywords));
     }
 
-    // 선택된 keyword에 해당하는 카드 전체 정보 반환
+    @Operation(summary = "키워드 기반 카드 반환", description = "키워드를 기준으로 카드를 반환합니다.")
     @GetMapping("/detail")
-    public ResponseEntity<Card> getCardByKeyword(@RequestParam String keyword) {
+    public ResponseEntity<ApiResponse<Card>> getCardByKeyword(@RequestParam String keyword) {
         Card card = cardService.getCardByKeyword(keyword);
 
         if (card == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(card);
+        return ResponseEntity.ok(ApiResponse.success("카드 반환 완료", card));
     }
 }

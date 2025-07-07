@@ -39,7 +39,7 @@ public class CommentController {
         return ResponseEntity.ok(ApiResponse.success("댓글 작성 성공", null));
     }
 
-    @Operation(summary = "댓글 삭제", description = "특정 댓글을 작성합니다.")
+    @Operation(summary = "댓글 삭제", description = "특정 댓글을 삭제합니다.")
     @DeleteMapping("/{commentId}")
     public ResponseEntity<ApiResponse<Void>> deleteComment(
             @PathVariable Long commentId,
@@ -64,7 +64,7 @@ public class CommentController {
         return ResponseEntity.ok(ApiResponse.success("댓글 수정 성공", null));
     }
 
-    @Operation(summary = "댓글 작성", description = "특정 게시판에 댓글을 조회합니다.")
+    @Operation(summary = "댓글 조회", description = "특정 게시판에 댓글을 조회합니다.")
     @GetMapping
     public ResponseEntity<ApiResponse<List<CommentResponseDto>>> getCommentByPost(
             @RequestParam("postId") Post post) {
