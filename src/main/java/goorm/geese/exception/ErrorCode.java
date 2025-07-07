@@ -26,8 +26,8 @@ public enum ErrorCode {
     NOT_MEMBER_FOUND(HttpStatus.NOT_FOUND, "NOT_MEMBER_FOUND"),
     NOT_VERIFIED_EMAIL(HttpStatus.FORBIDDEN, "NOT_VERIFIED_EMAIL"),
     NOT_FOUND_DEVICE(HttpStatus.NOT_FOUND, "NOT_FOUND_DEVICE" ),
-    NOT_FOUND_COMMENT(HttpStatus.NOT_FOUND, "NOT_FOUND_COMMENT");
-    ;
+    NOT_FOUND_COMMENT(HttpStatus.NOT_FOUND, "NOT_FOUND_COMMENT"),
+    NOT_FOUND_CARD(HttpStatus.NOT_FOUND, "NOT_FOUND_CARD");
 
     private final HttpStatus status;
     private final String message;
