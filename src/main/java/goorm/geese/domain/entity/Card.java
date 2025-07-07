@@ -1,9 +1,6 @@
 package goorm.geese.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,7 +14,12 @@ public class Card {
     private Long id;
 
     private String keyword;
+
     private String title;
-    private String device;
-    private String explain;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id")
+    private Device device;
+
+    private String description;
 }
